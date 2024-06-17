@@ -1,0 +1,119 @@
+.first-column {
+  width: 40%;
+  float: left;
+}
+
+.second-column {
+  width: 60%;
+  float: left;
+}
+
+.container {
+  margin-top: 10pxS;
+  padding-top: 10px;
+}
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.input-border {
+  outline-color: transparent;
+  border: 1px solid rgb(69, 66, 66);
+  margin-top: 10px;
+}
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: #fff;
+}
+
+section {
+  display: table;
+}
+
+.example-label {
+  display: table-cell;
+  font-size: 14px;
+  margin-left: 8px;
+  min-width: 120px;
+}
+
+.example-button-row {
+  display: table-cell;
+  max-width: 600px;
+
+}
+
+.example-button-row .mat-mdc-button-base {
+  margin: 8px 8px 8px 0;
+}
+
+.example-flex-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.example-button-container {
+  display: flex;
+  justify-content: center;
+  width: 120px;
+  float: right;
+}
+
+.btn-bg-color {
+  background-color: green;
+}
+
+.container-border {
+
+  padding: 100px;
+  border-radius: 3px;
+  border-width: 2px;
+  border-color: #322e2e;
+  border-style: double;
+
+}
+
+.buttonToLink {
+  background: none;
+  border: none;
+  color: green;
+  margin-top: 30px;
+}
+
+.deleteButton {
+  background: none;
+  border: none;
+  color: grey;
+  float: right;
+  margin-top: 30px;
+}
+
+.deleteButton:hover {
+  background: none;
+  text-decoration: underline;
+}
+
+.buttonToLink:hover {
+  background: none;
+  text-decoration: underline;
+}
+
+.addNewBtn{
+  margin-top: 20px;
+  float: right;
+}
+
+.submitBtn{
+  margin-top: 80px;
+  float: right;
+}
+

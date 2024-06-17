@@ -1,0 +1,159 @@
+<mat-stepper  #stepper>
+    <mat-step>
+        <div class="container">
+            <div class="first-column">
+                <h4>Basic Details</h4>
+            </div>
+            <div class="second-column">
+                <form [formGroup]="basicDetailsForm">
+
+                    <mat-form-field class="example-full-width input-border">
+                        <mat-label>Select company</mat-label>
+                        <mat-select formControlName="selectCompany" >
+                            <mat-option *ngFor="let company of companies" [value]="company.value">
+                                {{company.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field class="example-full-width input-border">
+                        <mat-label>Choose a date</mat-label>
+                        <input matInput [matDatepicker]="picker" formControlName="datePicker" >
+                        <mat-hint>MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width input-border"  >
+                        <mat-label>Select store</mat-label>
+                        <input type="text" placeholder="Pick one" aria-label="Number" matInput 
+                            [matAutocomplete]="auto" formControlName="selectStore" required>
+                        <mat-autocomplete #auto="matAutocomplete">
+                            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                                {{option}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width input-border">
+                        <mat-label>Remarks</mat-label>
+                        <textarea matInput formControlName="remarks"></textarea>
+                    </mat-form-field>
+                    <section>
+                        <div class="example-button-row">
+                            <button mat-raised-button>Cancel</button>
+                            <button mat-raised-button [disabled]="!basicDetailsForm.valid" (click)="saveBasicDetails(stepper)" color="primary"
+                                value="submit">Next</button>
+                        </div>
+                    </section>
+                </form>
+            </div>
+        </div>
+    </mat-step>
+    <mat-step>
+        <div class="row">
+            <div class="col">
+                <h4>Basic Details</h4>
+            </div>
+            <div class="col-6">
+                <h4>{{showCompanyName}}</h4>
+                <h4>{{showSelectedStore}}</h4>
+                <h4>{{showSelectedDate | date: 'dd/MM/yyyy' }}</h4>
+            </div>
+        </div>
+        <form [formGroup]="grnForm">
+            <div formArrayName="crnT">
+                <div *ngFor="let crn of crnListArray().controls; let i =index " class="row">
+                    <div [formGroupName]="i">
+                        <div class="row ">
+                            <div class="col">
+                                <mat-form-field class="example-full-width input-border">
+                                    <mat-label>Item Category</mat-label>
+                                    <mat-select name="selectCompany" (selectionChange)="onItemcategory($event)" formControlName="itemCategory" required>
+                                        <mat-option *ngFor="let category of itemCategory" [value]="category.value">
+                                            {{category.viewValue}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="col">
+                                <mat-form-field class="example-full-width input-border">
+                                    <mat-label>Item</mat-label>
+                                    <mat-select name="selectCompany" (selectionChange)="onItemSelected($event)" formControlName="item" >
+                                        <mat-option *ngFor="let item of items" [value]="item.value">
+                                            {{item.viewValue}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="col">
+                                <mat-form-field class="example-full-width input-border">
+                                    <mat-label>Select Strain</mat-label>
+                                    <mat-select name="selectCompany" formControlName="strain" required>
+                                        <mat-option *ngFor="let strain of strains" [value]="strain.value">
+                                            {{strain.viewValue}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="col">
+                                <mat-form-field class="example-full-width input-border">
+                                    <mat-label>Quanity</mat-label>
+                                    <input matInput  formControlName="quantity" >
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <mat-form-field class="example-full-width input-border">
+                                    <mat-label>UoM</mat-label>
+                                    <mat-select formControlName="uom" required>
+                                        <mat-option *ngFor="let U of UOM" [value]="U.value">
+                                            {{U.viewValue}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="col">
+                                <mat-form-field class="example-full-width input-border">
+                                    <mat-label>Total Cost</mat-label>
+                                    <input matInput formControlName="totalCost">
+                                </mat-form-field>
+                            </div>
+                            <div class="col">
+                                <mat-form-field class="example-full-width input-border">
+                                    <mat-label>Cost per unit</mat-label>
+                                    <input matInput formControlName="costPerUnit">
+                                </mat-form-field>
+                            </div>
+                            <div class="col">
+                                <mat-form-field class="example-full-width input-border">
+                                    <mat-label>Supplier</mat-label>
+                                    <mat-select formControlName="supplier" required>
+                                        <mat-option *ngFor="let company of companies" [value]="company.value">
+                                            {{company.viewValue}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div>
+                            <button (click)="removeGRN(i)" class="deleteButton">DELETE</button>
+                            <button class="buttonToLink" (click)="clearGRN(i)">CLEAR ALL</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <button mat-raised-button class="addNewBtn" (click)="addGRN()">ADD NEW </button>
+            </div>
+            <!-- <div>
+                <button  class="submitBtn">SUBMIT </button>
+            </div> -->
+        </form>
+        <div>
+            <button mat-raised-button (click)="submitGrnForm(stepper)" class="submitBtn">SUBMIT </button>
+            <button mat-raised-button (click)="gotoPreviousStep(stepper)" class="submitBtn">BACK </button>
+        </div>
+    </mat-step>
+</mat-stepper>
